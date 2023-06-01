@@ -29,7 +29,7 @@ col = ['video_id', 'time_stamp'] + [str(k) for k in range(0,128)]
 
 placeholder_array = np.array(col)
 
-counter = 0
+# counter = 0
 for raw_record in train_dataset:
     example = tf.train.SequenceExample()
     example.ParseFromString(raw_record.numpy())
@@ -38,8 +38,8 @@ for raw_record in train_dataset:
         for i in range(0,len(example.feature_lists.feature_list['audio_embedding'].feature)):
             time = example.context.feature['start_time_seconds'].float_list.value[0] + 0.96*i
             placeholder_array = np.vstack((placeholder_array, np.array([vID, time] + list(example.feature_lists.feature_list['audio_embedding'].feature[0].bytes_list.value[0]))))
-        counter += 1
-        print(str(counter) + ' matching clips.')
+#        counter += 1
+#        print(str(counter) + ' matching clips.')
 
 print('Done making the array. Converting to Pandas DF and saving.')
 
