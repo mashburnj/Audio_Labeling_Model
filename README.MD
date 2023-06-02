@@ -1,5 +1,8 @@
 # Outline
 
+Introduction:
+- Speech-in-Noise(SIN) perception is the ability to recognise relevant voice within a noisy background. As a first step to communicate efficiently it is necessary to find out whether a given raw audio includes someone speaking or not. 
+
 Objective:
 
 - To train a binary classification model to recognize when speech is present in an audio file.
@@ -16,7 +19,7 @@ What we did with it:
 
 - Because the ``strong'' labels were only made for 5% of the dataset, we took the intersection of that and the balanced subset. We had to take a similar approach for the evaluation set, because their ``strong'' label set also only covers a subset.
 
-- Google's label set includes X different sound events. 8 of these we classify as ``speech'' for our purposes.
+- Google's label set includes 527 different sound events. 8 of these we classify as ``speech'' for our purposes.
 
 - We processed the event sets to simply say, for each 960 ms piece of each 10 second audio clip, whether or not speech (as defined above) was present.
 
@@ -25,3 +28,6 @@ What we did with it:
 Our model:
 
 - Because Google had done most preprocessing already, we only needed to apply normalization (performed in the second layer of our neural network model, immediately below the input).
+
+Potential Applications:
+- For designing voice assistants for noisy environments.
