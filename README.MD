@@ -10,7 +10,7 @@ We train our ANN on this subset; our objective is binary classification in the s
 
 # Our model and results:
 
-Our key results are accuracy, which was 78%, and recall, which was 39%. 
+Our key results are 82.2% accuracy, 66.0% recall, and 64.4% precision, all of which were measured over the evaluation set. Recall and precision are metrics that try to compensate for datasets with imbalanced classes. 
 
 
 # Conclusion
