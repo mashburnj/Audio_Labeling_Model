@@ -1,10 +1,10 @@
 # Introduction/Objective:
 
-In recent years, speech recognition technology has been integrated into many consumer electronics, such as cell phones, vehicles, and smart homes, and will continue to be in demand for the foreseeable future. Speech-in-Noise (SIN) perception is the ability to recognise relevant voice within a noisy background, and is crucial for devices operating in environments where such a background is unavoidable, such as the inside of a moving vehicle. The first step in speech recognition for such devices, and the objective of our neural network model, is to determine whether a given raw audio sample includes someone speaking or not.
+In recent years, speech recognition technology has been integrated into many consumer electronics, such as cell phones, vehicles, and smart homes, and will continue to be in demand for the foreseeable future. Speech-in-Noise (SIN) perception is the ability to recognise relevant voice within a noisy background and is crucial for devices operating in environments where such a background is unavoidable, such as the inside of a moving vehicle. The first step in speech recognition for such devices, and the objective of our neural network model, is to determine whether a given raw audio sample includes someone speaking or not.
 
 # Proposed Solution:
 
-Our solution is to train an artificial neural network (ANN) on Google's AudioSet, which consists of thousands of 10-second audio excerpts from randomly selected YouTube videos. The raw audio set is not available to the public, but rather, 128-dimensional feature vectors, each representing 960 millisecond pieces of the excerpts, are free to download. These features were extracted using a convolutional neural network (CNN), quantized, and subjected to principal component analysis (PCA). Moreover, for a small subset of this dataset, Google provided a temporally detailed label set, describing for each 960 ms piece which sound events (out of 527 possibilites) are present.
+Our solution is to train an artificial neural network (ANN) on Google's AudioSet, which consists of thousands of 10-second audio excerpts from randomly selected YouTube videos. The raw audio set is not available to the public, but rather, 128-dimensional feature vectors, each representing 960 millisecond pieces of the excerpts, are free to download. These features were extracted using a convolutional neural network (CNN), quantized, and subjected to principal component analysis (PCA). Moreover, for a small subset of this dataset, Google provided a temporally detailed label set, describing for each 960 ms piece which sound events (out of 527 possibilities) are present.
 
 We train our ANN on this subset; our objective is binary classification in the sense that the model should determine whether or not speech is present in a 960 ms audio sample just from the 128-dimensional feature vector representing it. Google provided 527 sound event labels, and several of these easily can be considered "speech", and so every feature vector including one or more such events is to be assigned a "true" label. Because the subset is imbalanced, with roughly 18% of excerpts containing speech by our definition, we minimize a weighted binary cross entropy loss function.
 
@@ -14,8 +14,4 @@ Our key results are 82.2% accuracy, 66.0% recall, and 64.4% precision, all of wh
 
 # Conclusion
 
-These results show promise for the use of artificial neural networks to recognize speech, though the restricted subset proved to be a hinderance. 
-
-Potential Applications:
-- For designing voice assistants for noisy environments.
-- For building diagnostic hearing evaluation tests to establish the presence or absence of hearing problems at an early stage of development
+In the coming years, machine-learning-aided speech-in-noise detection will become more widespread in use as the technology improves. These results show promise for the use of artificial neural networks to recognize speech, even amid other noise. As more uses for such technology are discovered, such as better hearing diagnostic tests, machine-learning-based approaches such as this will prove useful in meeting the increasing demand for quality detection products.
