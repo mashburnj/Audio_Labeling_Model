@@ -10,8 +10,7 @@ We train our ANN on this subset; our objective is binary classification in the s
 
 # Our model and results:
 
-Our key results are 82.2% accuracy, 66.0% recall, and 64.4% precision, all of which were measured over the evaluation set. Recall and precision are metrics that try to compensate for datasets with imbalanced classes. 
-
+Our key results are 82.2% accuracy, 66.0% recall, and 64.4% precision, all of which were measured over the evaluation set and averaged across 30 trainings. The latter two are metrics that try to compensate for datasets with imbalanced classes such as ours. Overall, this is still a fairly good result which shows promise for our model's use in speech recognition applications. However, in some testing and examination of the ontology, we note that some human noises, such as laughter, singing, or babbling, tended to be a source of confusion for our model, given their similarities to speech. We classified them as non-speech because we aimed to distinguish deliberate speech from other human-made sounds. More work will need to be done in the future to strengthen the distinction.
 
 # Conclusion
 
