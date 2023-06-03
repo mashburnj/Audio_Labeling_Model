@@ -1,33 +1,21 @@
-# Outline
+# Introduction/Objective:
 
-Introduction:
-- Speech-in-Noise(SIN) perception is the ability to recognise relevant voice within a noisy background. As a first step to communicate efficiently it is necessary to find out whether a given raw audio includes someone speaking or not. 
+In recent years, speech recognition technology has been integrated into many consumer electronics, such as cell phones, vehicles, and smart homes, and will continue to be in demand for the foreseeable future. Speech-in-Noise (SIN) perception is the ability to recognise relevant voice within a noisy background, and is crucial for devices operating in environments where such a background is unavoidable, such as the inside of a moving vehicle. The first step in speech recognition for such devices, and the objective of our neural network model, is to determine whether a given raw audio sample includes someone speaking or not.
 
-Objective:
+# Proposed Solution:
 
-- To train a binary classification model to recognize when speech is present in an audio file.
+Our solution is to train an artificial neural network (ANN) on Google's AudioSet, which consists of thousands of 10-second audio excerpts from randomly selected YouTube videos. The raw audio set is not available to the public, but rather, 128-dimensional feature vectors, each representing 960 millisecond pieces of the excerpts, are free to download. These features were extracted using a convolutional neural network (CNN), quantized, and subjected to principal component analysis (PCA). Moreover, for a small subset of this dataset, Google provided a temporally detailed label set, describing for each 960 ms piece which sound events (out of 527 possibilites) are present.
 
-Google dataset description:
+We train our ANN on this subset; our objective is binary classification in the sense that the model should determine whether or not speech is present in a 960 ms audio sample just from the 128-dimensional feature vector representing it. Google provided 527 sound event labels, and several of these easily can be considered "speech", and so every feature vector including one or more such events is to be assigned a "true" label. Because the subset is imbalanced, with roughly 18% of excerpts containing speech by our definition, we minimize a weighted binary cross entropy loss function.
 
-- Each 10 second audio clip was split into 0.96 second pieces, each subjected to feature (spectrogram) extraction, a proprietary embedding, PCA, among other things.
+# Our model and results:
 
-- Google provides a label set which lists the sound events contained in 10 second clip, but this doesn't tell us when in each clip they occur.
+Our key results are accuracy, which was 78%, and recall, which was 39%. 
 
-- Fortunately, Google also provided a ``strong'' label set, which described exactly for each 960 ms piece which sound events were present.
 
-What we did with it:
+# Conclusion
 
-- Because the ``strong'' labels were only made for 5% of the dataset, we took the intersection of that and the balanced subset. We had to take a similar approach for the evaluation set, because their ``strong'' label set also only covers a subset.
-
-- Google's label set includes 527 different sound events. 8 of these we classify as ``speech'' for our purposes.
-
-- We processed the event sets to simply say, for each 960 ms piece of each 10 second audio clip, whether or not speech (as defined above) was present.
-
-- This allowed us to use this dataset for our binary classification problem.
-
-Our model:
-
-- Because Google had done most preprocessing already, we only needed to apply normalization (performed in the second layer of our neural network model, immediately below the input).
+These results show promise for the use of artificial neural networks to recognize speech, though the restricted subset proved to be a hinderance. 
 
 Potential Applications:
 - For designing voice assistants for noisy environments.
