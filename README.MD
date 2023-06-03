@@ -18,3 +18,4 @@ These results show promise for the use of artificial neural networks to recogniz
 
 Potential Applications:
 - For designing voice assistants for noisy environments.
+- For building diagnostic hearing evaluation tests to establish the presence or absence of hearing problems at an early stage of development
